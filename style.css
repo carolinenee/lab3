@@ -1,11 +1,11 @@
 .map-container {
     position: absolute;
-    top: 12%;
-    bottom: 5%;
-    left: 15%;
-    width: 70%;
-    border-radius: 8px;
-    border: 1px solid #000000;
+    top: 12%; /* Distance from the top of the page */
+    bottom: 5%; /* Distance from the bottom of the page */
+    left: 15%; /*puts map in the middle (because it's at 70% size*/
+    width: 70%; /* makes the map take up 70% of screen*/
+    border-radius: 8px; /*rounds the edges pf the map*/
+    border: 1px solid #000000; /*adds a black outline on the map*/
 }
 #toggle-labels {
     position: absolute;
@@ -28,7 +28,7 @@
     position: absolute;
     left: 35%;
     font-size: 50px;
-    font-family: "Lobster";
+    font-family: "Lobster"; /*the font*/
     color: black;
     text-shadow: 2px 2px 2px rgb(151, 220, 255);
 }

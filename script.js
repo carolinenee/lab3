@@ -12,13 +12,13 @@ map.on('load', () => { //not super useful as a layer i just wanted to make sure 
         "url": 'mapbox://carolinenee.3bs4acz8' // link to the vector tileset on mapbox 
     });
 
-    map.addLayer({
-        'id': 'neighborhood_visualised', //styling for the torontoneighborhoods layer
+    map.addLayer({ //styling for the toronto neighborhoods layer
+        'id': 'neighborhood_visualised', 
         'type': 'line',
         'source': 'toronto_neighbourhoods',
         'source-layer': 'Neighbourhoods_-_4326-aanwor', // name of the layer in mapbox
         'paint': {
-            'line-color': '#808080', //color for the fill 
+            'line-color': '#808080', //color for the neighborhood outline lines 
         }
     });
     map.addSource('cafes_data', { //loading geojson cafe data made with geojson.io 
@@ -40,17 +40,17 @@ map.on('load', () => { //not super useful as a layer i just wanted to make sure 
             ],
             'circle-color': [
                 'match',
-                ['get', 'rating'],
-                5, '#e6008b', // Green for rating 5
-                4, '#fa68c0', // Yellow for rating 4
-                3, '#feb6e2', // Orange for rating 3
-                2, '#fadcef', // Red for rating 2
+                ['get', 'rating'], //finds the rating associated with each point in the GeoJson
+                5, '#e6008b', // ranking number as associated colour
+                4, '#fa68c0', 
+                3, '#feb6e2', 
+                2, '#fadcef', 
                 '#ffffff'     // Default to black
             ]
         }
     });
-    map.addLayer({
-        'id': 'cafes-text',
+    map.addLayer({ // same as the circle data above but instead displays the names instead of circles
+        'id': 'cafes-text', 
         'type': 'symbol',
         'source': 'cafes_data',
         'layout': {
@@ -66,15 +66,16 @@ map.on('load', () => { //not super useful as a layer i just wanted to make sure 
     });
     map.setLayoutProperty('cafes-text', 'visibility', 'none'); // innitially dont show the names 
 });
-map.on('mouseover', 'cafes-point', (e) => {
+map.on('mouseover', 'cafes-point', (e) => { //creates a variable for the information we have in our data  
     const coordinates = e.features[0].geometry.coordinates.slice();
     const name = e.features[0].properties.name;
     const rating = e.features[0].properties.rating;
     const openingTime = e.features[0].properties['opening time'];
     const closingTime = e.features[0].properties['closing time'];
+
     new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`<strong>${name}</strong><br>Rating: ${rating}/5<br>Open: ${openingTime} - ${closingTime}`)
+        .setLngLat(coordinates) // popup will show up at the cafe's coordinates 
+        .setHTML(`<strong>${name}</strong><br>Rating: ${rating}/5<br>Open: ${openingTime} - ${closingTime}`) //contents of the popup, things with $ are values from the geoJson
         .addTo(map);
 });
 
