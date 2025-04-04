@@ -11,4 +11,18 @@
         ],
         "type": "Point"
       }
+    },,
+    {
+      "type": "Feature",
+      "properties": {"name": "5S",
+        "rating": 5,
+        "opening time": "8:00",
+        "closing time": "18:00"},
+      "geometry": {
+        "coordinates": [
+          -79.40083397885041,
+          43.648045276343794
+        ],
+        "type": "Point"
+      }
     }]}
